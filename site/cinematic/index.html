@@ -259,6 +259,60 @@
     .sentinel p { color: var(--muted); max-width: 560px; margin: 0 auto 12px; }
     .sentinel .wip { display: inline-flex; gap: 10px; align-items: center; margin-top: 26px; padding: 10px 18px; border: 1px solid var(--line-soft); border-radius: 999px; font-size: .85rem; color: var(--muted); background: var(--glass); }
 
+    /* ---------- SECTION 2 — QUICK SERVICES (BENTO) ---------- */
+    .accent { color: transparent; background: linear-gradient(120deg, #f0dca6, var(--gold) 38%, var(--ember)); -webkit-background-clip: text; background-clip: text; }
+    .services { position: relative; z-index: 2; padding: var(--section) 0; }
+    .sec-head { max-width: 760px; margin-bottom: clamp(40px, 6vw, 76px); }
+    .sec-head .eyebrow { margin-bottom: 16px; font-size: 1.1rem; }
+    .sec-head h2 { font-size: clamp(2rem, 5vw, 3.6rem); margin-bottom: 16px; }
+    .sec-head p { color: var(--muted); font-size: 1.08rem; max-width: 580px; }
+
+    .bento { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; grid-auto-rows: 212px; grid-auto-flow: dense; }
+    .tile { position: relative; border-radius: var(--r); border: 1px solid var(--line-soft); background: var(--glass);
+      backdrop-filter: blur(10px); padding: clamp(22px, 2.4vw, 34px); overflow: hidden; display: flex; flex-direction: column; isolation: isolate;
+      transition: transform .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease), background .5s var(--ease); }
+    .tile::before { content:""; position:absolute; inset:0; z-index:-1; opacity:0;
+      background: radial-gradient(70% 70% at 50% 0%, rgba(224,133,47,.22), transparent 70%); transition: opacity .5s var(--ease); }
+    .tile:hover { transform: translateY(-6px) scale(1.015); border-color: rgba(214,178,94,.45);
+      box-shadow: 0 30px 70px -30px rgba(224,133,47,.5); background: var(--glass-2); }
+    .tile:hover::before { opacity: 1; }
+    .b-lg { grid-column: span 2; grid-row: span 2; }
+    .b-wide { grid-column: span 2; }
+    .tile__ic { width: 54px; height: 54px; border-radius: 15px; display: grid; place-items: center; margin-bottom: auto;
+      background: radial-gradient(120% 120% at 30% 20%, rgba(224,133,47,.22), rgba(214,178,94,.06)); border: 1px solid var(--line); }
+    .tile__ic svg { width: 26px; height: 26px; stroke: var(--gold); fill: none; stroke-width: 1.6; }
+    .tile h3 { font-size: 1.4rem; margin: 18px 0 8px; }
+    .b-lg h3 { font-size: clamp(1.8rem, 2.6vw, 2.4rem); }
+    .tile p { color: var(--muted); font-size: .95rem; }
+    .tile__foot { margin-top: 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .price { font-family: var(--display); font-size: 1.3rem; color: #f0e6cf; }
+    .price span { font-size: .8rem; color: var(--muted); font-family: var(--ui); }
+    .link-ember { color: var(--ember-hi); font-weight: 600; font-size: .92rem; display: inline-flex; gap: 7px; align-items: center; transition: gap .3s var(--ease); }
+    .link-ember:hover { gap: 12px; }
+    .tile__art { position: absolute; inset: 0; z-index: -1;
+      background: radial-gradient(80% 60% at 80% 8%, rgba(224,133,47,.16), transparent 55%), linear-gradient(160deg, rgba(58,39,25,.5), transparent 62%); }
+    .minifire { position: absolute; right: 22px; bottom: 0; width: 110px; height: 150px; pointer-events: none; opacity: .85; }
+    .minifire span { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); border-radius: 50% 50% 42% 42%; filter: blur(5px); mix-blend-mode: screen; animation: flame 2.6s ease-in-out infinite; }
+    .minifire span:nth-child(1){ width: 84px; height: 116px; background: radial-gradient(circle at 50% 100%, #f6a64a, #e07b2c 45%, transparent 72%); }
+    .minifire span:nth-child(2){ width: 54px; height: 86px;  background: radial-gradient(circle at 50% 100%, #ffd27a, #f06a1f 50%, transparent 70%); animation-delay: -.4s; }
+    .minifire span:nth-child(3){ width: 30px; height: 52px;  background: radial-gradient(circle at 50% 100%, #fff2c8, #ffae3d 55%, transparent 72%); animation-delay: -.8s; }
+    @keyframes flame { 0%,100%{ transform: translateX(-50%) scaleY(1); } 50%{ transform: translateX(-52%) scaleY(1.08) scaleX(.94); } }
+    .tile--cta { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; gap: 26px;
+      background: linear-gradient(120deg, rgba(43,30,22,.6), var(--glass)); }
+    .tile--cta .tile__ic { display: none; }
+    .tile--cta h3 { margin: 8px 0; font-size: clamp(1.5rem, 2.4vw, 2.1rem); }
+    .tile--cta p { max-width: 540px; }
+    @media (max-width: 940px) {
+      .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+      .b-lg { grid-column: span 2; grid-row: span 2; }
+      .b-wide { grid-column: span 2; }
+    }
+    @media (max-width: 560px) {
+      .bento { grid-template-columns: 1fr; grid-auto-rows: auto; }
+      .tile, .b-lg, .b-wide { grid-column: auto; grid-row: auto; min-height: 168px; }
+      .tile--cta { flex-direction: column; align-items: flex-start; }
+    }
+
     /* page-load veil */
     .veil { position: fixed; inset: 0; z-index: 200; background: var(--bg); pointer-events: none; transition: opacity 1.2s var(--ease), visibility 1.2s; }
     .veil.gone { opacity: 0; visibility: hidden; }
@@ -360,16 +414,87 @@
       </div>
     </div>
 
-    <a href="#next" class="scrollcue">листайте<i></i></a>
+    <a href="#services" class="scrollcue">листайте<i></i></a>
   </section>
 
-  <!-- SENTINEL: shows scroll-storytelling continuing; placeholder for next sections -->
+  <!-- SECTION 2 — QUICK SERVICES (BENTO) -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Глава I · Всё для ритуала</span>
+        <h2>Один комплекс — <span class="accent">десятки причин</span> остаться</h2>
+        <p>Срубы, чан на живом огне, хаммам, бассейны и кафе — собрано на одной территории у озера.</p>
+      </div>
+
+      <div class="bento">
+        <!-- срубы (feature) -->
+        <article class="tile b-lg">
+          <div class="tile__art" aria-hidden="true"></div>
+          <span class="tile__ic"><svg viewBox="0 0 24 24"><path d="M12 2C8 8 16 9 12 16M8 21c-1-2 .5-3.5 0-5M16 21c1-2-.5-3.5 0-5"/></svg></span>
+          <h3>Девять срубов</h3>
+          <p>От уютного «эконома» до VIP «Суворовской» на 16 гостей. У каждого — своя парная, веранда и характер.</p>
+          <div class="tile__foot">
+            <span class="price">от 1 900 ₽<span> / час</span></span>
+            <a href="#catalog" class="link-ember">Выбрать сруб →</a>
+          </div>
+        </article>
+        <!-- хаммам -->
+        <article class="tile">
+          <span class="tile__ic"><svg viewBox="0 0 24 24"><path d="M3 14h18M5 14V9a7 7 0 0114 0v5M2 18h20M12 5V3"/></svg></span>
+          <h3>Хаммам &amp; SPA</h3>
+          <p>Тёплый камень и мягкий пар восточной бани.</p>
+        </article>
+        <!-- бассейны -->
+        <article class="tile">
+          <span class="tile__ic"><svg viewBox="0 0 24 24"><path d="M2 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0M2 17c2-2 4-2 6 0s4 2 6 0 4-2 6 0M2 7c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg></span>
+          <h3>Бассейны</h3>
+          <p>Тёплый внутренний и уличный — освежиться после жара.</p>
+        </article>
+        <!-- чан (wide) -->
+        <article class="tile b-wide">
+          <div class="minifire" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span class="tile__ic"><svg viewBox="0 0 24 24"><path d="M12 2C8 8 16 9 12 16M8 21c-1-2 .5-3.5 0-5M16 21c1-2-.5-3.5 0-5"/></svg></span>
+          <h3>Чан на костре</h3>
+          <p>Большой банный чан на живом огне под открытым небом — главный ритуал комплекса.</p>
+        </article>
+        <!-- беседки (wide) -->
+        <article class="tile b-wide">
+          <span class="tile__ic"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V9l6-5 6 5v11M9 20v-5h6v5"/></svg></span>
+          <h3>Беседки у озера</h3>
+          <p>Уютные беседки с мангалом и видом на воду — для тёплых вечеров большой компанией.</p>
+        </article>
+        <!-- кафе -->
+        <article class="tile">
+          <span class="tile__ic"><svg viewBox="0 0 24 24"><path d="M18 8h1a3 3 0 010 6h-1M4 8h14v6a5 5 0 01-5 5H9a5 5 0 01-5-5V8zM6 1v3M10 1v3M14 1v3"/></svg></span>
+          <h3>Кафе &amp; еда</h3>
+          <p>Домашняя кухня и чай на травах — с подачей в сруб.</p>
+        </article>
+        <!-- игры -->
+        <article class="tile">
+          <span class="tile__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M5 5l3 3M19 5l-3 3M5 19l3-3M19 19l-3-3"/></svg></span>
+          <h3>Игры &amp; досуг</h3>
+          <p>Бильярд, аэрохоккей, караоке и массажное кресло.</p>
+        </article>
+        <!-- корпоратив (full CTA) -->
+        <article class="tile tile--cta">
+          <div>
+            <span class="eyebrow" style="font-size:1rem; margin-bottom:10px;">Для компании</span>
+            <h3>Банный дворик с юртой и&nbsp;чаном</h3>
+            <p>Формат для корпоратива и праздника — до 20 человек, своя территория и программа.</p>
+          </div>
+          <a href="#booking" class="btn btn--ember btn--lg">Запросить корпоратив</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SENTINEL: scroll-storytelling continues; placeholder for sections 3–10 -->
   <section class="sentinel" id="next">
     <div class="wrap">
-      <span class="eyebrow center">Глава I из X</span>
+      <span class="eyebrow center">Глава II из X</span>
       <h2>История продолжается ниже</h2>
-      <p>Дальше — погружение посекционно: быстрые услуги (bento), immersive scroll-narrative, каталог бань, SPA, беседки у озера, кафе, cinematic-галерея, карта и бронирование.</p>
-      <span class="wip">🔥 Следующая секция: <b style="color:var(--gold)">Quick Services · Bento</b></span>
+      <p>Дальше — immersive scroll-narrative, каталог бань, SPA, беседки у озера, кафе, cinematic-галерея, карта и бронирование.</p>
+      <span class="wip">🔥 Следующая секция: <b style="color:var(--gold)">Immersive Story · scroll narrative</b></span>
     </div>
   </section>
 
@@ -474,6 +599,13 @@
         // hero content drifts up + dissolves into fog as you scroll away
         g.to('#heroContent', { y: -60, opacity: 0, filter: 'blur(8px)', ease: 'none',
           scrollTrigger: { trigger: '.hero', start: 'center top', end: 'bottom top', scrub: true } });
+
+        // Section 2 — bento tiles: fog → clarity, staggered on enter
+        g.set('.bento .tile', { opacity: 0, y: 42, filter: 'blur(12px)' });
+        window.ScrollTrigger.batch('.bento .tile', {
+          start: 'top 86%',
+          onEnter: b => g.to(b, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .9, stagger: .09, ease: 'expo.out', overwrite: true })
+        });
       }
     });
   </script>
