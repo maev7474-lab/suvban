@@ -313,6 +313,70 @@
       .tile--cta { flex-direction: column; align-items: flex-start; }
     }
 
+    /* ---------- SECTION 3 — IMMERSIVE STORY ---------- */
+    .story { position: relative; z-index: 2; padding: var(--section) 0; }
+    .story__steps { display: grid; gap: clamp(16px, 3vw, 36px); }
+    .story__step { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 6vw, 88px); align-items: center; padding: clamp(26px, 5vw, 64px) 0; }
+    .story__step:nth-child(even) .story__visual { order: 2; }
+    .story__visual { position: relative; aspect-ratio: 5/4; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line); display: grid; place-items: center; }
+    .story__visual::after { content:""; position:absolute; inset:0; background: radial-gradient(82% 70% at 50% 30%, transparent 42%, rgba(8,9,11,.6)); }
+    .v-steam { background: radial-gradient(70% 60% at 50% 92%, rgba(245,235,215,.20), transparent 60%), linear-gradient(160deg, #1a1d22, #0d0e11); }
+    .v-fire  { background: radial-gradient(70% 70% at 50% 92%, rgba(224,123,44,.42), transparent 62%), linear-gradient(160deg, #241510, #0d0906); }
+    .v-water { background: radial-gradient(70% 60% at 50% 84%, rgba(80,150,190,.32), transparent 62%), linear-gradient(160deg, #101a22, #0a0e12); }
+    .story__idx { position: absolute; top: 16px; left: 24px; z-index: 2; font-family: var(--display); font-size: clamp(3rem, 7vw, 5.5rem); color: rgba(255,255,255,.09); line-height: 1; }
+    .story__symbol { position: relative; z-index: 1; width: 42%; height: 42%; }
+    .story__symbol svg { width: 100%; height: 100%; stroke: var(--gold); fill: none; stroke-width: 1; opacity: .55; }
+    .story__text { max-width: 470px; }
+    .story__text .eyebrow { margin-bottom: 14px; }
+    .story__text h3 { font-size: clamp(1.8rem, 3.4vw, 2.8rem); margin-bottom: 16px; }
+    .story__text p { color: var(--muted); font-size: 1.05rem; }
+    @media (max-width: 800px){ .story__step{ grid-template-columns: 1fr; } .story__step:nth-child(even) .story__visual{ order: 0; } }
+
+    /* ---------- SECTION 4 — BATHS CATALOG ---------- */
+    .catalog { position: relative; z-index: 2; padding: var(--section) 0; }
+    .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .cab { position: relative; border-radius: var(--r); overflow: hidden; border: 1px solid var(--line-soft); background: var(--glass); backdrop-filter: blur(8px); isolation: isolate;
+      transition: transform .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease); }
+    .cab::before { content:""; position:absolute; inset:0; z-index:-1; opacity:0; background: radial-gradient(60% 60% at 50% 0%, rgba(224,133,47,.22), transparent 70%); transition: opacity .5s var(--ease); }
+    .cab:hover { transform: translateY(-6px); border-color: rgba(214,178,94,.45); box-shadow: 0 30px 70px -30px rgba(224,133,47,.5); }
+    .cab:hover::before { opacity: 1; }
+    .cab__media { aspect-ratio: 4/3; position: relative; overflow: hidden; }
+    .cab__media .ph { position: absolute; inset: 0; transition: transform .8s var(--ease); }
+    .cab:hover .cab__media .ph { transform: scale(1.07); }
+    .cab__media::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 42%, rgba(11,12,15,.85)); }
+    .cab__tag { position:absolute; top:14px; left:14px; z-index:2; padding:6px 13px; border-radius:999px; font-size:.72rem; font-weight:600; background: rgba(11,12,15,.6); border:1px solid var(--line); color: var(--gold); backdrop-filter: blur(6px); }
+    .cab__price { position:absolute; right:14px; bottom:14px; z-index:2; font-family: var(--display); font-size:1.2rem; color: var(--text); }
+    .cab__price span { font-size:.78rem; color: var(--muted); font-family: var(--ui); }
+    .cab__body { padding: 20px 22px 24px; }
+    .cab__body h3 { font-size:1.4rem; margin-bottom:8px; }
+    .cab__body p { color: var(--muted); font-size:.92rem; min-height: 40px; }
+    .cab__meta { display:flex; gap:14px; flex-wrap:wrap; margin:14px 0 18px; }
+    .cab__meta i { font-style:normal; font-size:.82rem; color: var(--gold); }
+    .cab__foot { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .ph-1{background:linear-gradient(150deg,#3a2719,#1d140d 70%),radial-gradient(circle at 70% 20%,rgba(224,133,47,.3),transparent 50%);}
+    .ph-2{background:linear-gradient(150deg,#243a2e,#10160f 75%),radial-gradient(circle at 30% 30%,rgba(120,160,120,.18),transparent 55%);}
+    .ph-3{background:linear-gradient(150deg,#2a2230,#120d18 75%),radial-gradient(circle at 60% 25%,rgba(214,178,94,.22),transparent 55%);}
+    .ph-4{background:linear-gradient(150deg,#1f2e3a,#0c1318 75%),radial-gradient(circle at 40% 25%,rgba(80,150,190,.2),transparent 55%);}
+    .ph-5{background:linear-gradient(150deg,#3a1f1f,#180c0c 75%),radial-gradient(circle at 65% 30%,rgba(224,90,44,.3),transparent 50%);}
+    .ph-6{background:linear-gradient(150deg,#33291a,#15100a 75%),radial-gradient(circle at 35% 25%,rgba(214,178,94,.25),transparent 55%);}
+    @media (max-width:940px){ .cat-grid{ grid-template-columns: repeat(2,1fr); } }
+    @media (max-width:560px){ .cat-grid{ grid-template-columns: 1fr; } }
+
+    /* ---------- SECTION 5 — SPA / WELLNESS ---------- */
+    .spa { position: relative; z-index: 2; padding: var(--section) 0; }
+    .spa__grid { display:grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,5vw,64px); align-items: center; }
+    .spa__visual { position: relative; aspect-ratio: 4/5; border-radius: var(--r-lg); overflow: hidden; border:1px solid var(--line); padding: clamp(26px,3vw,42px); display:flex; align-items:flex-end;
+      background: radial-gradient(70% 50% at 50% 0%, rgba(224,133,47,.2), transparent 55%), linear-gradient(160deg, #231a14, #0d0b09); }
+    .spa__visual blockquote { font-family: var(--accent); font-style: italic; font-size: clamp(1.3rem,2.4vw,1.9rem); color: #f0e6cf; line-height:1.3; position:relative; z-index:2; }
+    .spa__visual blockquote span { display:block; margin-top:14px; font-family: var(--ui); font-style: normal; font-size:.9rem; color: var(--muted); }
+    .spa__list { display:grid; gap: 2px; }
+    .spa__item { display:flex; gap:18px; padding: 20px 0; border-bottom:1px solid var(--line-soft); }
+    .spa__item .n { font-family: var(--display); font-size:1.1rem; color: var(--gold); flex:none; width: 34px; }
+    .spa__item h4 { font-size:1.15rem; margin-bottom:5px; }
+    .spa__item p { color: var(--muted); font-size:.92rem; }
+    .spa__cta { margin-top: 28px; }
+    @media (max-width:800px){ .spa__grid{ grid-template-columns:1fr; } .spa__visual{ aspect-ratio: 16/10; } }
+
     /* page-load veil */
     .veil { position: fixed; inset: 0; z-index: 200; background: var(--bg); pointer-events: none; transition: opacity 1.2s var(--ease), visibility 1.2s; }
     .veil.gone { opacity: 0; visibility: hidden; }
@@ -488,13 +552,135 @@
     </div>
   </section>
 
-  <!-- SENTINEL: scroll-storytelling continues; placeholder for sections 3–10 -->
+  <!-- SECTION 3 — IMMERSIVE STORY (scroll narrative) -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="sec-head" style="margin-inline:auto; text-align:center;">
+        <span class="eyebrow center" style="margin-bottom:16px;">Глава II · Ритуал</span>
+        <h2>Три стихии <span class="accent">русской бани</span></h2>
+        <p style="margin-inline:auto;">Пар, огонь и вода ведут через древний ритуал очищения — медленно, как и положено настоящему отдыху.</p>
+      </div>
+      <div class="story__steps">
+        <article class="story__step reveal">
+          <div class="story__visual v-steam">
+            <span class="story__idx">01</span>
+            <div class="story__symbol"><svg viewBox="0 0 100 100"><path d="M30 92c-9-15 9-23 0-38M50 92c-9-17 9-25 0-42M70 92c-9-15 9-23 0-38"/></svg></div>
+          </div>
+          <div class="story__text">
+            <span class="eyebrow">Пар</span>
+            <h3>Дыхание жара</h3>
+            <p>Жаркая парная на дровах, дубовый и берёзовый веник, профессиональное парение. Тело отпускает напряжение, мысли — суету. С этого начинается ритуал.</p>
+          </div>
+        </article>
+        <article class="story__step reveal">
+          <div class="story__visual v-fire">
+            <span class="story__idx">02</span>
+            <div class="story__symbol"><svg viewBox="0 0 100 100"><path d="M50 8C34 34 72 40 50 82M40 94c-11-15 6-25 0-38M60 94c11-15-6-25 0-38"/></svg></div>
+          </div>
+          <div class="story__text">
+            <span class="eyebrow">Огонь</span>
+            <h3>Чан под звёздами</h3>
+            <p>Большой банный чан на живом костре под открытым небом. Контраст жара и морозного воздуха, тепло воды и треск дров — момент, который запоминается надолго.</p>
+          </div>
+        </article>
+        <article class="story__step reveal">
+          <div class="story__visual v-water">
+            <span class="story__idx">03</span>
+            <div class="story__symbol"><svg viewBox="0 0 100 100"><path d="M10 45c10-9 20-9 30 0s20 9 30 0 20-9 30 0M10 60c10-9 20-9 30 0s20 9 30 0 20-9 30 0M10 75c10-9 20-9 30 0s20 9 30 0 20-9 30 0"/></svg></div>
+          </div>
+          <div class="story__text">
+            <span class="eyebrow">Вода</span>
+            <h3>Прохлада озера</h3>
+            <p>Тёплый и уличный бассейны, купель и тишина воды у леса. Завершение круга — и снова в парную. Так рождается то самое «банное» спокойствие.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — BATHS CATALOG (core product) -->
+  <section class="catalog" id="catalog">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Глава III · Срубы</span>
+        <h2>Девять характеров, <span class="accent">один ритуал</span></h2>
+        <p>Выберите атмосферу под настроение — тихий семейный вечер, шумную компанию или корпоратив у озера.</p>
+      </div>
+      <div class="cat-grid">
+        <article class="cab reveal">
+          <div class="cab__media"><div class="ph ph-1"></div><span class="cab__tag">VIP · №10</span><span class="cab__price">3 400 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Суворовская»</h3><p>Флагман: просторная парная, бассейн и зона отдыха в дубовом интерьере.</p>
+            <div class="cab__meta"><i>👥 до 16</i><i>🔥 парная</i><i>🏊 бассейн</i></div>
+            <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
+        </article>
+        <article class="cab reveal">
+          <div class="cab__media"><div class="ph ph-2"></div><span class="cab__tag">№3</span><span class="cab__price">2 600 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Богатырская»</h3><p>Просторный сруб для большой компании с верандой и видом на лес.</p>
+            <div class="cab__meta"><i>👥 до 12</i><i>🌿 веранда</i><i>🪓 на дровах</i></div>
+            <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
+        </article>
+        <article class="cab reveal">
+          <div class="cab__media"><div class="ph ph-3"></div><span class="cab__tag">№4</span><span class="cab__price">2 300 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Терма Суворовская»</h3><p>Тёплый камень, мягкий пар хаммама и атмосфера восточного SPA.</p>
+            <div class="cab__meta"><i>👥 до 8</i><i>♨️ хаммам</i><i>💎 SPA</i></div>
+            <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
+        </article>
+        <article class="cab reveal">
+          <div class="cab__media"><div class="ph ph-4"></div><span class="cab__tag">№2</span><span class="cab__price">2 100 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Бревенчатая»</h3><p>Классический русский сруб с уличным бассейном и выходом к озеру.</p>
+            <div class="cab__meta"><i>👥 до 10</i><i>🏊 уличный</i><i>🌊 озеро</i></div>
+            <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
+        </article>
+        <article class="cab reveal">
+          <div class="cab__media"><div class="ph ph-5"></div><span class="cab__tag">№6</span><span class="cab__price">1 900 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Дровяная»</h3><p>Аутентичная баня на дровах с живым жаром и берёзовыми вениками.</p>
+            <div class="cab__meta"><i>👥 до 6</i><i>🪓 на дровах</i><i>🌿 веники</i></div>
+            <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
+        </article>
+        <article class="cab reveal">
+          <div class="cab__media"><div class="ph ph-6"></div><span class="cab__tag">Дворик · Юрта</span><span class="cab__price">2 800 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Банный дворик»</h3><p>Юрта, чан на костре, бильярд и караоке — для корпоратива и праздника.</p>
+            <div class="cab__meta"><i>👥 до 14</i><i>🎱 бильярд</i><i>🎤 караоке</i></div>
+            <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
+        </article>
+      </div>
+      <div class="reveal" style="text-align:center; margin-top:42px;">
+        <a href="#booking" class="btn btn--ghost btn--lg">Показать все 9 срубов и&nbsp;цены</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 — SPA / WELLNESS -->
+  <section class="spa" id="spa">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Глава IV · Wellness</span>
+        <h2>SPA-ритуалы <span class="accent">для тела и духа</span></h2>
+        <p>Программы парения, ухода и восстановления — добавьте к брони любого сруба.</p>
+      </div>
+      <div class="spa__grid">
+        <div class="spa__visual reveal">
+          <blockquote>«Баня парит — баня правит»<span>— народная мудрость</span></blockquote>
+        </div>
+        <div class="spa__list">
+          <div class="spa__item reveal"><span class="n">01</span><div><h4>Парение с веником</h4><p>Профессиональный пар-мастер, дубовые и берёзовые веники.</p></div></div>
+          <div class="spa__item reveal"><span class="n">02</span><div><h4>Хаммам-пилинг</h4><p>Мыльный массаж и пилинг кесэ на тёплом камне.</p></div></div>
+          <div class="spa__item reveal"><span class="n">03</span><div><h4>Массаж</h4><p>Расслабляющий и спортивный массаж после парной.</p></div></div>
+          <div class="spa__item reveal"><span class="n">04</span><div><h4>Соляная комната</h4><p>Галотерапия для лёгкого дыхания и спокойствия.</p></div></div>
+          <div class="spa__item reveal"><span class="n">05</span><div><h4>Чайная церемония</h4><p>Травяные сборы Урала, мёд и домашняя выпечка.</p></div></div>
+          <a href="#booking" class="btn btn--ember btn--lg spa__cta reveal">Записаться на SPA</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SENTINEL: scroll-storytelling continues; placeholder for sections 6–10 -->
   <section class="sentinel" id="next">
     <div class="wrap">
-      <span class="eyebrow center">Глава II из X</span>
+      <span class="eyebrow center">Глава V из X</span>
       <h2>История продолжается ниже</h2>
-      <p>Дальше — immersive scroll-narrative, каталог бань, SPA, беседки у озера, кафе, cinematic-галерея, карта и бронирование.</p>
-      <span class="wip">🔥 Следующая секция: <b style="color:var(--gold)">Immersive Story · scroll narrative</b></span>
+      <p>Дальше — беседки у озера, кафе, cinematic-галерея, карта и конверсионное бронирование.</p>
+      <span class="wip">🔥 Следующая секция: <b style="color:var(--gold)">Беседки у озера · Lake zone</b></span>
     </div>
   </section>
 
@@ -606,6 +792,17 @@
           start: 'top 86%',
           onEnter: b => g.to(b, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .9, stagger: .09, ease: 'expo.out', overwrite: true })
         });
+
+        // Generic reveal (sections 3+): fog → clarity on enter
+        g.set('.reveal', { opacity: 0, y: 44, filter: 'blur(12px)' });
+        window.ScrollTrigger.batch('.reveal', {
+          start: 'top 88%',
+          onEnter: b => g.to(b, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, stagger: .1, ease: 'expo.out', overwrite: true })
+        });
+
+        // Story: depth parallax on the visual panels (bg slower than text)
+        g.utils.toArray('.story__visual').forEach(v => g.fromTo(v, { yPercent: -7 },
+          { yPercent: 7, ease: 'none', scrollTrigger: { trigger: v, start: 'top bottom', end: 'bottom top', scrub: true } }));
       }
     });
   </script>
