@@ -479,6 +479,36 @@
     @media (max-width:760px){ .foot-grid{ grid-template-columns: 1fr 1fr; } }
     @media (max-width:480px){ .foot-grid{ grid-template-columns: 1fr; } }
 
+    /* ---------- SCROLL PROGRESS + CHAPTER RAIL ---------- */
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 120; background: linear-gradient(90deg, var(--amber), var(--ember-hi)); box-shadow: 0 0 12px rgba(224,133,47,.6); }
+    .chapters { position: fixed; right: 22px; top: 50%; transform: translateY(-50%); z-index: 60; display: flex; flex-direction: column; gap: 14px; }
+    .chapters a { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--line); display: block; position: relative; transition: .3s var(--ease); }
+    .chapters a::after { content: attr(data-label); position: absolute; right: 20px; top: 50%; transform: translateY(-50%); white-space: nowrap; font-size: .74rem; color: var(--text); opacity: 0; pointer-events: none; transition: .3s; background: rgba(11,12,15,.85); border: 1px solid var(--line-soft); padding: 3px 9px; border-radius: 7px; }
+    .chapters a:hover { border-color: var(--gold); }
+    .chapters a:hover::after { opacity: 1; }
+    .chapters a.active { background: var(--ember); border-color: var(--ember); box-shadow: 0 0 10px rgba(224,133,47,.7); transform: scale(1.35); }
+    @media (max-width: 900px){ .chapters { display: none; } }
+
+    /* ---------- PINNED STORY STAGE (sticky scene) ---------- */
+    .story__pin { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 80px); align-items: start; }
+    .story__stage { position: sticky; top: 110px; aspect-ratio: 5/4; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line); }
+    .story__stage .pane { position: absolute; inset: 0; opacity: 0; transition: opacity .9s var(--ease); display: grid; place-items: center; }
+    .story__stage .pane.active { opacity: 1; }
+    .story__stage .pane::after { content:""; position:absolute; inset:0; background: radial-gradient(82% 70% at 50% 30%, transparent 42%, rgba(8,9,11,.6)); }
+    .story__chapter { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; max-width: 470px; }
+    .story__chapter .eyebrow { margin-bottom: 14px; }
+    .story__chapter h3 { font-size: clamp(1.8rem, 3.4vw, 2.8rem); margin-bottom: 16px; }
+    .story__chapter p { color: var(--muted); font-size: 1.05rem; }
+    @media (max-width: 800px){
+      .story__pin { grid-template-columns: 1fr; gap: 10px; }
+      .story__stage { position: relative; top: 0; }
+      .story__chapter { min-height: auto; padding: 26px 0; }
+    }
+
+    /* cabin photo slots (real photos drop into assets/cabins/; gradient is fallback) */
+    .cab__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+    .cab:hover .cab__img { transform: scale(1.07); }
+
     /* page-load veil */
     .veil { position: fixed; inset: 0; z-index: 200; background: var(--bg); pointer-events: none; transition: opacity 1.2s var(--ease), visibility 1.2s; }
     .veil.gone { opacity: 0; visibility: hidden; }
@@ -505,6 +535,21 @@
 </head>
 <body id="top">
   <div class="veil" id="veil"></div>
+
+  <!-- scroll progress + chapter rail -->
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <nav class="chapters" id="chapters" aria-label="Навигация по главам">
+    <a href="#hero" data-label="Главная"></a>
+    <a href="#services" data-label="Услуги"></a>
+    <a href="#story" data-label="Ритуал"></a>
+    <a href="#catalog" data-label="Срубы"></a>
+    <a href="#spa" data-label="SPA"></a>
+    <a href="#gazebos" data-label="Беседки"></a>
+    <a href="#food" data-label="Кафе"></a>
+    <a href="#gallery" data-label="Галерея"></a>
+    <a href="#map" data-label="Карта"></a>
+    <a href="#booking" data-label="Бронь"></a>
+  </nav>
 
   <!-- Ambient foundation (shared by all future sections) -->
   <div class="ambient" aria-hidden="true">
@@ -662,40 +707,40 @@
         <h2>Три стихии <span class="accent">русской бани</span></h2>
         <p style="margin-inline:auto;">Пар, огонь и вода ведут через древний ритуал очищения — медленно, как и положено настоящему отдыху.</p>
       </div>
-      <div class="story__steps">
-        <article class="story__step reveal">
-          <div class="story__visual v-steam">
+      <div class="story__pin">
+        <!-- pinned (sticky) stage: crossfades through the three elements -->
+        <div class="story__stage" aria-hidden="true">
+          <div class="pane v-steam active" data-pane="0">
             <span class="story__idx">01</span>
             <div class="story__symbol"><svg viewBox="0 0 100 100"><path d="M30 92c-9-15 9-23 0-38M50 92c-9-17 9-25 0-42M70 92c-9-15 9-23 0-38"/></svg></div>
           </div>
-          <div class="story__text">
+          <div class="pane v-fire" data-pane="1">
+            <span class="story__idx">02</span>
+            <div class="story__symbol"><svg viewBox="0 0 100 100"><path d="M50 8C34 34 72 40 50 82M40 94c-11-15 6-25 0-38M60 94c11-15-6-25 0-38"/></svg></div>
+          </div>
+          <div class="pane v-water" data-pane="2">
+            <span class="story__idx">03</span>
+            <div class="story__symbol"><svg viewBox="0 0 100 100"><path d="M10 45c10-9 20-9 30 0s20 9 30 0 20-9 30 0M10 60c10-9 20-9 30 0s20 9 30 0 20-9 30 0M10 75c10-9 20-9 30 0s20 9 30 0 20-9 30 0"/></svg></div>
+          </div>
+        </div>
+        <!-- scrolling chapters drive the stage crossfade -->
+        <div class="story__scroller">
+          <div class="story__chapter reveal" data-chapter="0">
             <span class="eyebrow">Пар</span>
             <h3>Дыхание жара</h3>
             <p>Жаркая парная на дровах, дубовый и берёзовый веник, профессиональное парение. Тело отпускает напряжение, мысли — суету. С этого начинается ритуал.</p>
           </div>
-        </article>
-        <article class="story__step reveal">
-          <div class="story__visual v-fire">
-            <span class="story__idx">02</span>
-            <div class="story__symbol"><svg viewBox="0 0 100 100"><path d="M50 8C34 34 72 40 50 82M40 94c-11-15 6-25 0-38M60 94c11-15-6-25 0-38"/></svg></div>
-          </div>
-          <div class="story__text">
+          <div class="story__chapter reveal" data-chapter="1">
             <span class="eyebrow">Огонь</span>
             <h3>Чан под звёздами</h3>
             <p>Большой банный чан на живом костре под открытым небом. Контраст жара и морозного воздуха, тепло воды и треск дров — момент, который запоминается надолго.</p>
           </div>
-        </article>
-        <article class="story__step reveal">
-          <div class="story__visual v-water">
-            <span class="story__idx">03</span>
-            <div class="story__symbol"><svg viewBox="0 0 100 100"><path d="M10 45c10-9 20-9 30 0s20 9 30 0 20-9 30 0M10 60c10-9 20-9 30 0s20 9 30 0 20-9 30 0M10 75c10-9 20-9 30 0s20 9 30 0 20-9 30 0"/></svg></div>
-          </div>
-          <div class="story__text">
+          <div class="story__chapter reveal" data-chapter="2">
             <span class="eyebrow">Вода</span>
             <h3>Прохлада озера</h3>
             <p>Тёплый и уличный бассейны, купель и тишина воды у леса. Завершение круга — и снова в парную. Так рождается то самое «банное» спокойствие.</p>
           </div>
-        </article>
+        </div>
       </div>
     </div>
   </section>
@@ -710,44 +755,63 @@
       </div>
       <div class="cat-grid">
         <article class="cab reveal">
-          <div class="cab__media"><div class="ph ph-1"></div><span class="cab__tag">VIP · №10</span><span class="cab__price">3 400 ₽<span>/час</span></span></div>
-          <div class="cab__body"><h3>«Суворовская»</h3><p>Флагман: просторная парная, бассейн и зона отдыха в дубовом интерьере.</p>
-            <div class="cab__meta"><i>👥 до 16</i><i>🔥 парная</i><i>🏊 бассейн</i></div>
+          <div class="cab__media"><div class="ph ph-1"></div><img class="cab__img" src="../assets/cabins/semeynaya.jpg" alt="Сруб «Семейная»" loading="lazy" onerror="this.remove()"><span class="cab__tag">№1 · Семейная</span><span class="cab__price">от 1 200 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Семейная»</h3><p>Уютный сруб для тихого семейного вечера — с купелью и комнатой отдыха.</p>
+            <div class="cab__meta"><i>👥 до 6</i><i>💧 купель</i><i>🌿 уютно</i></div>
             <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
         </article>
         <article class="cab reveal">
-          <div class="cab__media"><div class="ph ph-2"></div><span class="cab__tag">№3</span><span class="cab__price">2 600 ₽<span>/час</span></span></div>
-          <div class="cab__body"><h3>«Богатырская»</h3><p>Просторный сруб для большой компании с верандой и видом на лес.</p>
+          <div class="cab__media"><div class="ph ph-2"></div><img class="cab__img" src="../assets/cabins/brevenchataya.jpg" alt="Сруб «Бревенчатая»" loading="lazy" onerror="this.remove()"><span class="cab__tag">№2</span><span class="cab__price">от 1 600 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Бревенчатая»</h3><p>Классический русский сруб с бассейном и выходом к озеру.</p>
+            <div class="cab__meta"><i>👥 до 12</i><i>🪵 сруб</i><i>🏊 бассейн</i></div>
+            <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
+        </article>
+        <article class="cab reveal">
+          <div class="cab__media"><div class="ph ph-3"></div><img class="cab__img" src="../assets/cabins/bogatyrskaya.jpg" alt="Сруб «Богатырская» (Люкс)" loading="lazy" onerror="this.remove()"><span class="cab__tag">Люкс · №3</span><span class="cab__price">от 2 000 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Богатырская»</h3><p>Просторный люкс для большой компании с верандой и видом на лес.</p>
             <div class="cab__meta"><i>👥 до 12</i><i>🌿 веранда</i><i>🪓 на дровах</i></div>
             <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
         </article>
         <article class="cab reveal">
-          <div class="cab__media"><div class="ph ph-3"></div><span class="cab__tag">№4</span><span class="cab__price">2 300 ₽<span>/час</span></span></div>
+          <div class="cab__media"><div class="ph ph-6"></div><img class="cab__img" src="../assets/cabins/terma.jpg" alt="Сруб «Терма Суворовская»" loading="lazy" onerror="this.remove()"><span class="cab__tag">№4</span><span class="cab__price">от 1 900 ₽<span>/час</span></span></div>
           <div class="cab__body"><h3>«Терма Суворовская»</h3><p>Тёплый камень, мягкий пар хаммама и атмосфера восточного SPA.</p>
             <div class="cab__meta"><i>👥 до 8</i><i>♨️ хаммам</i><i>💎 SPA</i></div>
             <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
         </article>
         <article class="cab reveal">
-          <div class="cab__media"><div class="ph ph-4"></div><span class="cab__tag">№2</span><span class="cab__price">2 100 ₽<span>/час</span></span></div>
-          <div class="cab__body"><h3>«Бревенчатая»</h3><p>Классический русский сруб с уличным бассейном и выходом к озеру.</p>
-            <div class="cab__meta"><i>👥 до 10</i><i>🏊 уличный</i><i>🌊 озеро</i></div>
+          <div class="cab__media"><div class="ph ph-4"></div><img class="cab__img" src="../assets/cabins/derevenskaya.jpg" alt="Сруб «Деревенская»" loading="lazy" onerror="this.remove()"><span class="cab__tag">Сруб</span><span class="cab__price">от 1 600 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Деревенская»</h3><p>Атмосфера русской деревни, живой жар и мангал на веранде.</p>
+            <div class="cab__meta"><i>👥 до 8</i><i>🏡 деревенский</i><i>🔥 мангал</i></div>
             <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
         </article>
         <article class="cab reveal">
-          <div class="cab__media"><div class="ph ph-5"></div><span class="cab__tag">№6</span><span class="cab__price">1 900 ₽<span>/час</span></span></div>
-          <div class="cab__body"><h3>«Дровяная»</h3><p>Аутентичная баня на дровах с живым жаром и берёзовыми вениками.</p>
-            <div class="cab__meta"><i>👥 до 6</i><i>🪓 на дровах</i><i>🌿 веники</i></div>
+          <div class="cab__media"><div class="ph ph-5"></div><img class="cab__img" src="../assets/cabins/ohotnichya.jpg" alt="Сруб «Охотничья»" loading="lazy" onerror="this.remove()"><span class="cab__tag">Сруб</span><span class="cab__price">от 1 700 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Охотничья»</h3><p>Брутальный охотничий декор, жаркая парная и бильярд для компании.</p>
+            <div class="cab__meta"><i>👥 до 10</i><i>🦌 охотничья</i><i>🎱 бильярд</i></div>
             <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
         </article>
         <article class="cab reveal">
-          <div class="cab__media"><div class="ph ph-6"></div><span class="cab__tag">Дворик · Юрта</span><span class="cab__price">2 800 ₽<span>/час</span></span></div>
-          <div class="cab__body"><h3>«Банный дворик»</h3><p>Юрта, чан на костре, бильярд и караоке — для корпоратива и праздника.</p>
-            <div class="cab__meta"><i>👥 до 14</i><i>🎱 бильярд</i><i>🎤 караоке</i></div>
+          <div class="cab__media"><div class="ph ph-2"></div><img class="cab__img" src="../assets/cabins/rybatskaya.jpg" alt="Сруб «Рыбацкая»" loading="lazy" onerror="this.remove()"><span class="cab__tag">Сруб</span><span class="cab__price">от 1 600 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Рыбацкая»</h3><p>Сруб у самой воды с мангалом и причалом — для рыбацкого настроения.</p>
+            <div class="cab__meta"><i>👥 до 8</i><i>🎣 у воды</i><i>🔥 мангал</i></div>
+            <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
+        </article>
+        <article class="cab reveal">
+          <div class="cab__media"><div class="ph ph-3"></div><img class="cab__img" src="../assets/cabins/polulux.jpg" alt="Сруб Полулюкс" loading="lazy" onerror="this.remove()"><span class="cab__tag">Полулюкс</span><span class="cab__price">от 1 400 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>Полулюкс</h3><p>Комфортный сруб с джакузи и караоке — золотая середина по цене.</p>
+            <div class="cab__meta"><i>👥 до 8</i><i>🛁 джакузи</i><i>🎤 караоке</i></div>
+            <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
+        </article>
+        <article class="cab reveal">
+          <div class="cab__media"><div class="ph ph-1"></div><img class="cab__img" src="../assets/cabins/suvorovskaya.jpg" alt="Сруб «Суворовская» (VIP)" loading="lazy" onerror="this.remove()"><span class="cab__tag">VIP · №10</span><span class="cab__price">от 2 300 ₽<span>/час</span></span></div>
+          <div class="cab__body"><h3>«Суворовская»</h3><p>Флагман на 16 гостей: большая парная, бассейн, бильярд и караоке.</p>
+            <div class="cab__meta"><i>👥 до 16</i><i>🏊 бассейн</i><i>🎱 бильярд</i></div>
             <div class="cab__foot"><a href="#booking" class="btn btn--ember">Забронировать</a><a href="#booking" class="link-ember">Подробнее →</a></div></div>
         </article>
       </div>
       <div class="reveal" style="text-align:center; margin-top:42px;">
-        <a href="#booking" class="btn btn--ghost btn--lg">Показать все 9 срубов и&nbsp;цены</a>
+        <p style="color:var(--muted); font-size:.9rem; margin-bottom:18px;">Цена указана «от» и зависит от дня и времени · доплата за доп. гостей · уточняйте у администратора</p>
+        <a href="#booking" class="btn btn--ember btn--lg">Забронировать сруб</a>
       </div>
     </div>
   </section>
@@ -922,12 +986,15 @@
                 <div class="field"><label for="bCabin">Сруб</label>
                   <select id="bCabin" name="cabin" required>
                     <option value="" disabled selected>Выберите сруб</option>
-                    <option>«Суворовская» (VIP, до 16)</option>
-                    <option>«Богатырская» (до 12)</option>
-                    <option>«Терма Суворовская» (хаммам)</option>
-                    <option>«Бревенчатая» (до 10)</option>
-                    <option>«Дровяная» (до 6)</option>
-                    <option>«Банный дворик» (юрта, до 14)</option>
+                    <option>№1 «Семейная» (до 6)</option>
+                    <option>№2 «Бревенчатая» (до 12)</option>
+                    <option>№3 «Богатырская» — Люкс (до 12)</option>
+                    <option>№4 «Терма Суворовская» (хаммам)</option>
+                    <option>«Деревенская» (до 8)</option>
+                    <option>«Охотничья» (до 10)</option>
+                    <option>«Рыбацкая» (до 8)</option>
+                    <option>Полулюкс (до 8)</option>
+                    <option>№10 «Суворовская» — VIP (до 16)</option>
                     <option>Подберите за меня</option>
                   </select>
                 </div>
@@ -1077,6 +1144,38 @@
       }, { passive: true });
     }
 
+    // ===== scroll progress + chapter rail + pinned-story crossfade (vanilla; works without GSAP) =====
+    (function () {
+      const prog = document.getElementById('progress');
+      let pt = false;
+      const updateProg = () => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        if (prog) prog.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+        pt = false;
+      };
+      updateProg();
+      addEventListener('scroll', () => { if (!pt) { requestAnimationFrame(updateProg); pt = true; } }, { passive: true });
+      addEventListener('resize', updateProg);
+
+      const links = [...document.querySelectorAll('.chapters a')];
+      if (links.length) {
+        const io = new IntersectionObserver(es => es.forEach(e => {
+          if (e.isIntersecting) { const id = '#' + e.target.id; links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id)); }
+        }), { rootMargin: '-45% 0px -45% 0px' });
+        links.forEach(a => { const s = document.querySelector(a.getAttribute('href')); if (s) io.observe(s); });
+      }
+
+      const panes = [...document.querySelectorAll('.story__stage .pane')];
+      const chapters = [...document.querySelectorAll('.story__chapter')];
+      if (panes.length && chapters.length) {
+        const io2 = new IntersectionObserver(es => es.forEach(e => {
+          if (e.isIntersecting) { const i = +e.target.dataset.chapter; panes.forEach((p, idx) => p.classList.toggle('active', idx === i)); }
+        }), { rootMargin: '-40% 0px -40% 0px' });
+        chapters.forEach(c => io2.observe(c));
+      }
+    })();
+
     // ===== booking form (conversion: validate → summary → WhatsApp deep-link) =====
     (function () {
       const form = document.getElementById('bookForm');
@@ -1167,9 +1266,6 @@
           onEnter: b => g.to(b, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, stagger: .1, ease: 'expo.out', overwrite: true })
         });
 
-        // Story: depth parallax on the visual panels (bg slower than text)
-        g.utils.toArray('.story__visual').forEach(v => g.fromTo(v, { yPercent: -7 },
-          { yPercent: 7, ease: 'none', scrollTrigger: { trigger: v, start: 'top bottom', end: 'bottom top', scrub: true } }));
       }
     });
   </script>
