@@ -377,6 +377,108 @@
     .spa__cta { margin-top: 28px; }
     @media (max-width:800px){ .spa__grid{ grid-template-columns:1fr; } .spa__visual{ aspect-ratio: 16/10; } }
 
+    /* ---------- SECTION 6 — LAKE / GAZEBOS ---------- */
+    .lake { position: relative; z-index: 2; padding: var(--section) 0; }
+    .feature2 { display: grid; grid-template-columns: 1.05fr .95fr; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line); background: linear-gradient(135deg, #14171c, #0c0e11); }
+    .feature2__media { position: relative; min-height: 440px; overflow: hidden; display: grid; place-items: center; }
+    .v-lake { background: radial-gradient(80% 70% at 50% 100%, rgba(80,150,190,.4), transparent 60%), radial-gradient(60% 40% at 28% 18%, rgba(40,70,60,.5), transparent 60%), linear-gradient(160deg, #14202a, #0b1016); }
+    .feature2__body { padding: clamp(34px,5vw,64px); display: flex; flex-direction: column; justify-content: center; }
+    .feature2__body h2 { font-size: clamp(2rem,4vw,3rem); margin: 14px 0 16px; }
+    .feature2__body p { color: var(--muted); margin-bottom: 16px; }
+    .feature2__list { list-style: none; display: grid; gap: 12px; margin: 6px 0 30px; }
+    .feature2__list li { display: flex; gap: 12px; align-items: flex-start; font-size: .98rem; }
+    .feature2__list li svg { width: 20px; height: 20px; flex: none; margin-top: 2px; stroke: var(--ember-hi); fill: none; stroke-width: 1.8; }
+    @media (max-width:900px){ .feature2{ grid-template-columns: 1fr; } .feature2__media{ min-height: 300px; order: -1; } }
+
+    /* ---------- SECTION 7 — FOOD ---------- */
+    .food { position: relative; z-index: 2; padding: var(--section) 0; }
+    .food-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+    .foodcard { padding: clamp(24px,2.5vw,34px); border-radius: var(--r); border: 1px solid var(--line-soft); background: var(--glass);
+      transition: transform .5s var(--ease), border-color .5s var(--ease), background .5s var(--ease); }
+    .foodcard:hover { transform: translateY(-5px) scale(1.02); border-color: rgba(214,178,94,.4); background: var(--glass-2); }
+    .foodcard .tile__ic { margin-bottom: 18px; }
+    .foodcard h3 { font-size: 1.25rem; margin-bottom: 8px; }
+    .foodcard p { color: var(--muted); font-size: .93rem; }
+    @media (max-width:940px){ .food-grid{ grid-template-columns: repeat(2,1fr); } }
+    @media (max-width:520px){ .food-grid{ grid-template-columns: 1fr; } }
+
+    /* ---------- SECTION 8 — GALLERY (cinematic wall) ---------- */
+    .gallery-sec { position: relative; z-index: 2; padding: var(--section) 0; }
+    .gwall { display: grid; grid-template-columns: repeat(4,1fr); grid-auto-rows: 200px; gap: 14px; grid-auto-flow: dense; }
+    .gwall a { position: relative; border-radius: var(--r-sm); overflow: hidden; border: 1px solid var(--line-soft); display: block; }
+    .gwall a .ph { position: absolute; inset: 0; transition: transform .8s var(--ease); }
+    .gwall a::before { content:""; position:absolute; inset:0; z-index:1; background: linear-gradient(180deg, transparent 45%, rgba(11,12,15,.8)); opacity:.6; transition: opacity .4s; }
+    .gwall a::after { content: attr(data-cap); position:absolute; left:16px; bottom:14px; z-index:2; font-size:.85rem; color: var(--text); opacity:0; transform: translateY(8px); transition:.4s var(--ease); text-shadow: 0 2px 10px rgba(0,0,0,.8); }
+    .gwall a:hover .ph { transform: scale(1.08); }
+    .gwall a:hover::after { opacity: 1; transform: none; }
+    .gwall a:hover::before { opacity: 1; }
+    .g-tall { grid-row: span 2; } .g-wide { grid-column: span 2; }
+    @media (max-width:900px){ .gwall{ grid-template-columns: repeat(2,1fr); } }
+    @media (max-width:520px){ .gwall{ grid-auto-rows: 150px; } }
+
+    /* ---------- SECTION 9 — MAP / CONTACT ---------- */
+    .contact { position: relative; z-index: 2; padding: var(--section) 0; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: stretch; }
+    .cinfo { display: grid; gap: 14px; align-content: start; }
+    .irow { display: flex; gap: 16px; padding: 22px; border-radius: var(--r-sm); border: 1px solid var(--line-soft); background: var(--glass); transition: border-color .4s, transform .4s; }
+    .irow:hover { border-color: var(--line); transform: translateX(4px); }
+    .irow .ic { width: 48px; height: 48px; flex: none; border-radius: 14px; display: grid; place-items: center; background: radial-gradient(120% 120% at 30% 20%, rgba(224,133,47,.2), rgba(214,178,94,.06)); border: 1px solid var(--line); }
+    .irow .ic svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.6; }
+    .irow b { font-size: 1.05rem; } .irow p, .irow a { color: var(--muted); font-size: .93rem; } .irow a:hover { color: var(--gold); }
+    .mapc { border-radius: var(--r); overflow: hidden; border: 1px solid var(--line-soft); position: relative; min-height: 400px; background: linear-gradient(135deg, #14201a, #0c100c); }
+    .mapc iframe { width: 100%; height: 100%; min-height: 400px; border: 0; position: relative; z-index: 1; filter: grayscale(.3) sepia(.25) brightness(.85) contrast(1.05); }
+    .mapfb { position: absolute; inset: 0; display: grid; place-items: center; padding: 30px; text-align: center; }
+    .mapfb .pin { width: 58px; height: 58px; border-radius: 50%; margin: 0 auto 16px; display: grid; place-items: center; background: radial-gradient(circle at 30% 20%, var(--ember-hi), var(--ember)); box-shadow: 0 12px 34px -8px rgba(224,133,47,.7); }
+    .mapfb .pin svg { width: 26px; height: 26px; stroke: #fff; fill: none; stroke-width: 1.8; }
+    @media (max-width:800px){ .contact-grid{ grid-template-columns: 1fr; } }
+
+    /* ---------- SECTION 10 — BOOKING ---------- */
+    .booking { position: relative; z-index: 2; padding: var(--section) 0; }
+    .book-card { border-radius: var(--r-lg); border: 1px solid var(--line); overflow: hidden; background: linear-gradient(135deg, rgba(40,28,18,.55), rgba(11,12,15,.7)); backdrop-filter: blur(16px); box-shadow: 0 24px 70px -28px rgba(0,0,0,.85); }
+    .book-grid { display: grid; grid-template-columns: .9fr 1.1fr; }
+    .book-aside { padding: clamp(34px,4vw,54px); border-right: 1px solid var(--line-soft); background: radial-gradient(120% 80% at 0% 0%, rgba(224,133,47,.14), transparent 55%); }
+    .book-aside h2 { font-size: clamp(1.9rem,3.4vw,2.7rem); margin: 14px 0 16px; }
+    .book-aside p { color: var(--muted); margin-bottom: 26px; }
+    .bpoints { list-style: none; display: grid; gap: 16px; }
+    .bpoints li { display: flex; gap: 13px; align-items: flex-start; }
+    .bpoints li svg { width: 22px; height: 22px; flex: none; stroke: var(--gold); fill: none; stroke-width: 1.7; margin-top: 1px; }
+    .bpoints li b { display: block; font-size: .98rem; } .bpoints li span { color: var(--muted); font-size: .85rem; }
+    .book-form { padding: clamp(30px,4vw,50px); }
+    .field { margin-bottom: 18px; } .field label { display: block; font-size: .82rem; color: var(--muted); margin-bottom: 8px; }
+    .field input, .field select { width: 100%; padding: 14px 15px; border-radius: var(--r-sm); color: var(--text); font-family: inherit; font-size: .98rem; background: rgba(8,9,11,.55); border: 1px solid var(--line-soft); transition: border-color .3s, box-shadow .3s, background .3s; -webkit-appearance: none; appearance: none; }
+    .field input:focus, .field select:focus { outline: none; border-color: rgba(214,178,94,.6); box-shadow: 0 0 0 3px rgba(224,133,47,.16); background: rgba(8,9,11,.8); }
+    .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23D6B25E' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; padding-right: 40px; }
+    .field input::placeholder { color: #6f6557; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .checkbox { display: flex; gap: 10px; align-items: center; font-size: .84rem; color: var(--muted); margin: 4px 0 18px; cursor: pointer; }
+    .checkbox input { width: auto; accent-color: var(--ember); }
+    .bnote { font-size: .78rem; color: var(--muted); margin-top: 14px; text-align: center; } .bnote a { color: var(--gold); }
+    .qrow { display: flex; gap: 10px; margin-top: 16px; } .qrow a { flex: 1; justify-content: center; padding: 12px; font-size: .9rem; }
+    .book-ok { display: none; padding: clamp(30px,4vw,50px); text-align: center; } .book-ok.show { display: block; }
+    .book-ok .ck { width: 74px; height: 74px; border-radius: 50%; margin: 0 auto 22px; display: grid; place-items: center; background: radial-gradient(circle at 30% 20%, rgba(103,208,127,.3), rgba(103,208,127,.08)); border: 1px solid rgba(103,208,127,.4); }
+    .book-ok .ck svg { width: 34px; height: 34px; stroke: #7fe09a; fill: none; stroke-width: 2; }
+    .book-ok h3 { font-size: 1.7rem; margin-bottom: 12px; } .book-ok p { color: var(--muted); margin-bottom: 8px; }
+    .bsum { margin: 22px auto; max-width: 380px; text-align: left; background: rgba(8,9,11,.5); border: 1px solid var(--line-soft); border-radius: var(--r-sm); padding: 18px 20px; }
+    .bsum div { display: flex; justify-content: space-between; padding: 7px 0; font-size: .92rem; border-bottom: 1px dashed var(--line-soft); } .bsum div:last-child { border-bottom: none; }
+    .bsum div span:first-child { color: var(--muted); } .bsum div span:last-child { color: var(--text); font-weight: 500; }
+    @media (max-width:860px){ .book-grid{ grid-template-columns: 1fr; } .book-aside{ border-right: none; border-bottom: 1px solid var(--line-soft); } }
+    @media (max-width:520px){ .row2{ grid-template-columns: 1fr; } .qrow{ flex-direction: column; } }
+
+    /* ---------- FOOTER ---------- */
+    footer { border-top: 1px solid var(--line-soft); padding: 60px 0 34px; position: relative; z-index: 2; background: rgba(8,9,11,.6); }
+    .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 34px; margin-bottom: 44px; }
+    .foot-grid h4 { font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .foot-grid ul { list-style: none; display: grid; gap: 11px; }
+    .foot-grid a { color: var(--muted); font-size: .92rem; transition: color .3s; } .foot-grid a:hover { color: var(--text); }
+    .foot-about p { color: var(--muted); font-size: .92rem; margin: 16px 0 20px; max-width: 320px; }
+    .socials { display: flex; gap: 10px; }
+    .socials a { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: var(--glass); border: 1px solid var(--line-soft); transition: .3s var(--ease); }
+    .socials a:hover { border-color: var(--line); transform: translateY(-3px); box-shadow: 0 0 26px -6px rgba(214,178,94,.5); }
+    .socials a svg { width: 20px; height: 20px; fill: var(--gold); }
+    .foot-bottom { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 26px; border-top: 1px solid var(--line-soft); color: var(--muted); font-size: .84rem; }
+    @media (max-width:760px){ .foot-grid{ grid-template-columns: 1fr 1fr; } }
+    @media (max-width:480px){ .foot-grid{ grid-template-columns: 1fr; } }
+
     /* page-load veil */
     .veil { position: fixed; inset: 0; z-index: 200; background: var(--bg); pointer-events: none; transition: opacity 1.2s var(--ease), visibility 1.2s; }
     .veil.gone { opacity: 0; visibility: hidden; }
@@ -674,15 +776,231 @@
     </div>
   </section>
 
-  <!-- SENTINEL: scroll-storytelling continues; placeholder for sections 6–10 -->
-  <section class="sentinel" id="next">
+  <!-- SECTION 6 — LAKE / GAZEBOS -->
+  <section class="lake" id="gazebos">
     <div class="wrap">
-      <span class="eyebrow center">Глава V из X</span>
-      <h2>История продолжается ниже</h2>
-      <p>Дальше — беседки у озера, кафе, cinematic-галерея, карта и конверсионное бронирование.</p>
-      <span class="wip">🔥 Следующая секция: <b style="color:var(--gold)">Беседки у озера · Lake zone</b></span>
+      <div class="feature2 reveal">
+        <div class="feature2__media v-lake">
+          <span class="story__idx" style="color:rgba(255,255,255,.1)">05</span>
+          <div class="story__symbol" style="width:38%;height:38%"><svg viewBox="0 0 100 100"><path d="M20 70h60M30 70V44l20-16 20 16v26M42 70V56h16v14" stroke="#D6B25E" fill="none" stroke-width="1.2"/><path d="M10 86c10-7 20-7 30 0s20 7 30 0 20-7 30 0" stroke="#7fb3d6" fill="none" stroke-width="1.2"/></svg></div>
+        </div>
+        <div class="feature2__body">
+          <span class="eyebrow">Глава V · У воды</span>
+          <h2>Беседки у&nbsp;озера</h2>
+          <p>Уютные беседки с мангалом и видом на воду — тёплые вечера большой компанией, между парной и прохладой леса.</p>
+          <ul class="feature2__list">
+            <li><svg viewBox="0 0 24 24"><path d="M12 2C8 8 16 9 12 16M9 22c-2-3 1-5 0-8M15 22c2-3-1-5 0-8"/></svg> Мангал и зона барбекю в каждой беседке</li>
+            <li><svg viewBox="0 0 24 24"><path d="M2 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0M2 13c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg> Причал и вид на озеро у самой воды</li>
+            <li><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87"/></svg> Компании до 20 человек</li>
+          </ul>
+          <div><a href="#booking" class="btn btn--ember btn--lg">Забронировать беседку</a></div>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- SECTION 7 — RESTAURANT / FOOD -->
+  <section class="food" id="food">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Глава VI · Кафе</span>
+        <h2>Кухня <span class="accent">у бани</span></h2>
+        <p>Домашняя еда, мангал и травяной чай — с подачей прямо к парной.</p>
+      </div>
+      <div class="food-grid">
+        <div class="foodcard reveal">
+          <span class="tile__ic"><svg viewBox="0 0 24 24"><path d="M12 2C8 8 16 9 12 16M9 22c-2-3 1-5 0-8M15 22c2-3-1-5 0-8"/></svg></span>
+          <h3>Мангал &amp; горячее</h3><p>Шашлык, стейки и рыба на углях — с дымком.</p>
+        </div>
+        <div class="foodcard reveal">
+          <span class="tile__ic"><svg viewBox="0 0 24 24"><path d="M3 7h18M5 7l1 13a2 2 0 002 2h8a2 2 0 002-2l1-13M9 7V4h6v3"/></svg></span>
+          <h3>Закуски &amp; сеты</h3><p>Сырные и мясные тарелки, домашние соленья.</p>
+        </div>
+        <div class="foodcard reveal">
+          <span class="tile__ic"><svg viewBox="0 0 24 24"><path d="M18 8h1a3 3 0 010 6h-1M4 8h14v6a5 5 0 01-5 5H9a5 5 0 01-5-5V8zM6 1v3M10 1v3M14 1v3"/></svg></span>
+          <h3>Чай &amp; напитки</h3><p>Травяной чай Урала, лимонады и морсы.</p>
+        </div>
+        <div class="foodcard reveal">
+          <span class="tile__ic"><svg viewBox="0 0 24 24"><path d="M3 13h13v5H3zM16 16h3l2-3v3h-5M5.5 18a1.5 1.5 0 100 3 1.5 1.5 0 000-3zM17.5 18a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg></span>
+          <h3>Доставка в сруб</h3><p>Привезём прямо к парной — горячим.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8 — GALLERY (cinematic wall) -->
+  <section class="gallery-sec" id="gallery">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Глава VII · Атмосфера</span>
+        <h2>Пар, огонь, вода <span class="accent">и лес</span></h2>
+        <p>Фрагменты вечера в Суворовских банях. Реальные фото — в нашей <a href="https://vk.com/suvorovskie_bani" class="link-ember" target="_blank" rel="noopener">группе ВКонтакте</a>.</p>
+      </div>
+      <div class="gwall reveal">
+        <a class="g-tall" data-cap="Парная на дровах"><div class="ph ph-1"></div></a>
+        <a class="g-wide" data-cap="Чан на костре под звёздами"><div class="ph ph-5"></div></a>
+        <a data-cap="Уличный бассейн"><div class="ph ph-4"></div></a>
+        <a data-cap="Беседка у озера"><div class="ph ph-2"></div></a>
+        <a class="g-wide" data-cap="Зона отдыха VIP"><div class="ph ph-3"></div></a>
+        <a data-cap="Хаммам"><div class="ph ph-6"></div></a>
+        <a data-cap="Веранда с видом на лес"><div class="ph ph-2"></div></a>
+        <a data-cap="Купель"><div class="ph ph-4"></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9 — MAP / CONTACT -->
+  <section class="contact" id="map">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Глава VIII · Как добраться</span>
+        <h2>Ждём вас <span class="accent">у озера</span></h2>
+        <p>Копейск, проспект Победы 55/3 — всего 15 минут от Челябинска.</p>
+      </div>
+      <div class="contact-grid reveal">
+        <div class="cinfo">
+          <a href="tel:+79028900069" class="irow">
+            <span class="ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8 9.6a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.5c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg></span>
+            <div><b>+7 (902) 890-00-69</b><p>Звоните круглосуточно</p></div>
+          </a>
+          <div class="irow">
+            <span class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div><b>Проспект Победы, 55/3</b><p>Копейск, Челябинская область</p></div>
+          </div>
+          <div class="irow">
+            <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></span>
+            <div><b>Режим работы</b><p>Круглосуточно, 7 дней в неделю</p></div>
+          </div>
+          <a href="https://vk.com/suvorovskie_bani" target="_blank" rel="noopener" class="irow">
+            <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM7 9c.5 3 2.5 5.5 5 5.5V9m0 5.5c1 0 2.5-1.5 3.5-3"/></svg></span>
+            <div><b>Мы в соцсетях</b><p>vk.com/suvorovskie_bani · бани74.рф</p></div>
+          </a>
+        </div>
+        <div class="mapc">
+          <div class="mapfb">
+            <div>
+              <div class="pin"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <b style="font-size:1.2rem; display:block; margin-bottom:6px;">Копейск, пр. Победы 55/3</b>
+              <p style="color:var(--muted); margin-bottom:16px;">Челябинская область · 15 мин от Челябинска</p>
+              <a href="https://yandex.ru/maps/org/suvorovskiye_bani/1593146542/" target="_blank" rel="noopener" class="btn btn--ghost">Открыть в Яндекс.Картах</a>
+            </div>
+          </div>
+          <iframe loading="lazy" title="Суворовские Бани на карте"
+            src="https://yandex.ru/map-widget/v1/?ll=61.236%2C55.116&z=15&text=%D0%9A%D0%BE%D0%BF%D0%B5%D0%B9%D1%81%D0%BA%2C%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%2055%2F3"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 10 — BOOKING (conversion) -->
+  <section class="booking" id="booking">
+    <div class="wrap">
+      <div class="sec-head" style="margin-inline:auto; text-align:center;">
+        <span class="eyebrow center" style="margin-bottom:16px;">Глава IX · Бронирование</span>
+        <h2>Забронируйте <span class="accent">свой вечер</span></h2>
+      </div>
+      <div class="book-card reveal">
+        <div class="book-grid">
+          <aside class="book-aside">
+            <span class="eyebrow">Без предоплаты</span>
+            <h2>Перезвоним за 15&nbsp;минут</h2>
+            <p>Оставьте заявку — подтвердим свободный сруб и время. Можно сразу написать нам в мессенджер.</p>
+            <ul class="bpoints">
+              <li><svg viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg><div><b>Круглосуточно</b><span>Работаем 24/7, без выходных</span></div></li>
+              <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><div><b>Подтверждение по звонку</b><span>Заявка ни к чему не обязывает</span></div></li>
+              <li><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><b>Копейск, пр. Победы 55/3</b><span>15 минут от Челябинска</span></div></li>
+            </ul>
+          </aside>
+
+          <div class="book-form" id="bookFormWrap">
+            <form id="bookForm" novalidate>
+              <div class="row2">
+                <div class="field"><label for="bDate">Дата</label><input type="date" id="bDate" name="date" required /></div>
+                <div class="field"><label for="bTime">Время заезда</label><input type="time" id="bTime" name="time" value="18:00" required /></div>
+              </div>
+              <div class="row2">
+                <div class="field"><label for="bCabin">Сруб</label>
+                  <select id="bCabin" name="cabin" required>
+                    <option value="" disabled selected>Выберите сруб</option>
+                    <option>«Суворовская» (VIP, до 16)</option>
+                    <option>«Богатырская» (до 12)</option>
+                    <option>«Терма Суворовская» (хаммам)</option>
+                    <option>«Бревенчатая» (до 10)</option>
+                    <option>«Дровяная» (до 6)</option>
+                    <option>«Банный дворик» (юрта, до 14)</option>
+                    <option>Подберите за меня</option>
+                  </select>
+                </div>
+                <div class="field"><label for="bGuests">Гостей</label>
+                  <select id="bGuests" name="guests" required>
+                    <option value="" disabled selected>Сколько вас?</option>
+                    <option>1–2</option><option>3–4</option><option>5–6</option>
+                    <option>7–10</option><option>11–14</option><option>15–16</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field"><label for="bName">Ваше имя</label><input type="text" id="bName" name="name" placeholder="Как к вам обращаться" required /></div>
+              <div class="field"><label for="bPhone">Телефон</label><input type="tel" id="bPhone" name="phone" placeholder="+7 (___) ___-__-__" required /></div>
+              <label class="checkbox"><input type="checkbox" id="bChan" /> Добавить чан на костре 🔥</label>
+              <button type="submit" class="btn btn--ember btn--lg" style="width:100%; justify-content:center;">Отправить заявку</button>
+              <div class="qrow">
+                <a href="tel:+79028900069" class="btn btn--ghost">📞 Позвонить</a>
+                <a href="https://wa.me/79028900069" target="_blank" rel="noopener" class="btn btn--ghost">💬 WhatsApp</a>
+                <a href="https://vk.com/suvorovskie_bani" target="_blank" rel="noopener" class="btn btn--ghost">ВКонтакте</a>
+              </div>
+              <p class="bnote">Нажимая «Отправить», вы соглашаетесь с обработкой данных.</p>
+            </form>
+          </div>
+
+          <div class="book-ok" id="bookOk">
+            <div class="ck"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <h3>Заявка готова к&nbsp;отправке!</h3>
+            <p>Мы перезвоним для подтверждения. Чтобы ускорить — отправьте детали в WhatsApp.</p>
+            <div class="bsum" id="bookSum"></div>
+            <a id="waSend" href="#" target="_blank" rel="noopener" class="btn btn--ember btn--lg" style="width:100%; justify-content:center; margin-bottom:12px;">💬 Отправить в WhatsApp</a>
+            <a href="#" class="link-ember" id="bookReset">← Изменить заявку</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-about">
+          <a href="#top" class="brand">
+            <span class="brand__mark">СБ</span>
+            <span class="brand__txt"><b>Суворовские&nbsp;Бани</b><span>Slavic Heritage SPA</span></span>
+          </a>
+          <p>Премиальный банный комплекс на берегу озера. Девять срубов, чан на костре, SPA и кафе. Древний ритуал отдыха — для вас.</p>
+          <div class="socials">
+            <a href="https://vk.com/suvorovskie_bani" target="_blank" rel="noopener" aria-label="ВКонтакте"><svg viewBox="0 0 24 24"><path d="M13.2 17c-5 0-8.4-3.5-8.6-9.3h2.6c.1 4.3 2 6.1 3.5 6.5V7.7h2.4v3.5c1.5-.2 3-1.8 3.6-3.5h2.4c-.5 2-1.9 3.6-2.9 4.2 1 .5 2.6 1.9 3.3 4.1h-2.7c-.5-1.6-1.8-2.9-3.3-3.1V17z"/></svg></a>
+            <a href="tel:+79028900069" aria-label="Телефон"><svg viewBox="0 0 24 24" fill="none" stroke="#D6B25E" stroke-width="1.5"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8 9.6a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.5c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg></a>
+          </div>
+        </div>
+        <div><h4>Комплекс</h4><ul>
+          <li><a href="#services">Услуги</a></li><li><a href="#catalog">Срубы</a></li>
+          <li><a href="#spa">SPA &amp; Хаммам</a></li><li><a href="#gallery">Галерея</a></li>
+        </ul></div>
+        <div><h4>Гостям</h4><ul>
+          <li><a href="#booking">Бронирование</a></li><li><a href="#gazebos">Беседки</a></li>
+          <li><a href="#food">Кафе</a></li><li><a href="#map">Как добраться</a></li>
+        </ul></div>
+        <div><h4>Контакты</h4><ul>
+          <li><a href="tel:+79028900069">+7 (902) 890-00-69</a></li>
+          <li><a href="#map">пр. Победы, 55/3, Копейск</a></li>
+          <li><a href="https://vk.com/suvorovskie_bani" target="_blank" rel="noopener">ВКонтакте</a></li>
+          <li><span style="color:var(--muted)">Круглосуточно</span></li>
+        </ul></div>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span id="year"></span> Суворовские Бани · Копейск. Все права защищены.</span>
+        <span>Slavic Heritage SPA · Cinematic UI/UX 2026</span>
+      </div>
+    </div>
+  </footer>
 
   <script>
     // ===== load veil =====
@@ -758,6 +1076,55 @@
         if (!tick){ requestAnimationFrame(apply); tick = true; }
       }, { passive: true });
     }
+
+    // ===== booking form (conversion: validate → summary → WhatsApp deep-link) =====
+    (function () {
+      const form = document.getElementById('bookForm');
+      if (!form) return;
+      const wrap = document.getElementById('bookFormWrap');
+      const okBox = document.getElementById('bookOk');
+      const sum = document.getElementById('bookSum');
+      const waSend = document.getElementById('waSend');
+      const $ = id => document.getElementById(id);
+      const dateInput = $('bDate');
+      const today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+      const iso = today.toISOString().split('T')[0];
+      dateInput.min = iso; dateInput.value = iso;
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        const data = {
+          'Дата': $('bDate').value, 'Время': $('bTime').value, 'Сруб': $('bCabin').value,
+          'Гостей': $('bGuests').value, 'Имя': $('bName').value, 'Телефон': $('bPhone').value
+        };
+        if ($('bChan').checked) data['Чан на костре'] = 'да 🔥';
+        sum.innerHTML = Object.entries(data).map(([k, v]) => `<div><span>${k}</span><span>${v}</span></div>`).join('');
+        const msg = 'Здравствуйте! Хочу забронировать сруб в Суворовских банях.%0A' +
+          Object.entries(data).map(([k, v]) => `${k}: ${v}`).join('%0A');
+        waSend.href = `https://wa.me/79028900069?text=${msg}`;
+        wrap.style.display = 'none'; okBox.classList.add('show');
+        okBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+      $('bookReset').addEventListener('click', e => { e.preventDefault(); okBox.classList.remove('show'); wrap.style.display = 'block'; });
+
+      const phone = $('bPhone');
+      phone.addEventListener('input', () => {
+        let v = phone.value.replace(/\D/g, '');
+        if (v.startsWith('8')) v = '7' + v.slice(1);
+        if (v.startsWith('7')) v = v.slice(1);
+        v = v.slice(0, 10);
+        let out = '+7';
+        if (v.length) out += ' (' + v.slice(0, 3);
+        if (v.length >= 3) out += ') ' + v.slice(3, 6);
+        if (v.length >= 6) out += '-' + v.slice(6, 8);
+        if (v.length >= 8) out += '-' + v.slice(8, 10);
+        phone.value = out;
+      });
+    })();
+
+    // footer year
+    (function () { const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear(); })();
 
     // ===== GSAP motion (progressive enhancement) =====
     const revealNow = () => document.documentElement.classList.remove('pre');
